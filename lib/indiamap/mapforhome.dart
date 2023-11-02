@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:lets_charge/utils/routes.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:lets_charge/utils/routes.dart';
 
 class MapForHome extends StatefulWidget {
   const MapForHome({super.key});
@@ -19,15 +20,17 @@ class MapForHome extends StatefulWidget {
 
 class _MapForHomeState extends State<MapForHome> {
 
-  var userLongitude=0.0;
-  var userLatitude=0.0;
-  var apiKey = '3c61ea357ad340aeb5e2bea7fec13952';
+  var userLongitude = 0.0;
+  var userLatitude = 0.0;
+  var apiKey = '';
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     modifyuserlocation();
   }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

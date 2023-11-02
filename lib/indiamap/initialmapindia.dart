@@ -7,12 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lets_charge/indiamap/mapforhome.dart';
-import 'package:lets_charge/indiamapclass/currentlocation.dart';
 import 'package:lets_charge/utils/routes.dart';
-import 'package:uuid/data.dart';
-import 'package:http/http.dart' as http;
 
 class InitialMapIndia extends StatefulWidget {
   static String Address = "";
@@ -248,10 +246,8 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
 
   // get access token
   Future<String> getAccessToken() async {
-    const clientId =
-        '33OkryzDZsLOeDQTxe3oiJNjbJh-kTzigCKAAmyrekeaH9m502ciddUNvGyESt9qgLTspZLr0hQu1HFMTY-M1g==';
-    const clientSecret =
-        'lrFxI-iSEg9H9u-l6zqy5SRBytIhMMwmeltsNwp1lmfAptsupx3lxwr3N7cd5gryr0B8_Nw5U5zNRqGMhDyx5KnyYwaYEf6l';
+    const clientId = '';
+    const clientSecret = '';
     const tokenUrl = 'https://outpost.mapmyindia.com/api/security/oauth/token';
 
     final response = await http.post(
@@ -283,8 +279,7 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
     // Perform a detailed search for the selected place using MapMyIndia
     FocusScope.of(context).unfocus();
     InitialMapIndia.Address = selectedPlace;
-    const apiKey =
-        '67cb6529c60e278225357773b10b64fc'; // Replace with your MapMyIndia API key
+    const apiKey = ''; // Replace with your MapMyIndia API key
     const baseUrl = 'https://atlas.mapmyindia.com/api/places/geocode';
     final headers = {
       'Authorization': 'Bearer $getaccesstoken',
@@ -327,17 +322,16 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
   // getting address coordinates // drive into that location // circular radius
   Future<void> geocodeAddress(
       String selectedPlace, String apikey) async {
-    final apiKey = '2f4e7fae95e545e681eef6f43ddb086d';
+    final apiKey = '';
     BitmapDescriptor customMarkericon = await BitmapDescriptor.defaultMarker;
     BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(48, 48)),
-        "assets/images/evlocationicon.png")
+            const ImageConfiguration(size: Size(48, 48)),
+            "assets/images/evlocationicon.png")
         .then((icon) {
       customMarkericon = icon;
     });
     try {
-      latLng =
-      await getAddressCoordinates(selectedPlace, apiKey);
+      latLng = await getAddressCoordinates(selectedPlace, apiKey);
       updatemap();
     } catch (e) {
       print('Error geocoding address: $e');
@@ -371,7 +365,7 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
       String selectedPlace, String apiKey) async {
     final encodedAddress = Uri.encodeQueryComponent(selectedPlace);
     final apiEndpoint =
-        'https://api.opencagedata.com/geocode/v1/json?q=$encodedAddress&key=2f4e7fae95e545e681eef6f43ddb086d';
+        'https://api.opencagedata.com/geocode/v1/json?q=$encodedAddress&key=';
     print(selectedPlace);
     final response = await http.get(Uri.parse(apiEndpoint));
     print(response.body);
@@ -436,8 +430,8 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
     print(userLatitude);
     print(userLongitude);
     final url = Uri.parse(
-        "https://api.geoapify.com/v2/places?categories=catering.restaurant,accommodation.hotel&filter=circle:$userLatitude,$userLongitude,$radius&bias=proximity:$userLatitude,$userLongitude&limit=20&apiKey=3c61ea357ad340aeb5e2bea7fec13952");
-    final response = await http.get(url,headers: {
+        "https://api.geoapify.com/v2/places?categories=catering.restaurant,accommodation.hotel&filter=circle:$userLatitude,$userLongitude,$radius&bias=proximity:$userLatitude,$userLongitude&limit=20&apiKey=");
+    final response = await http.get(url, headers: {
       "Accept": "application/json",
     });
     print(url);
@@ -512,8 +506,8 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
     print(userLatitude);
     print(userLongitude);
     final url = Uri.parse(
-        "https://api.geoapify.com/v2/places?categories=service.vehicle.charging_station&filter=circle:$userLatitude,$userLongitude,$radius&bias=proximity:$userLatitude,$userLongitude&limit=20&apiKey=3c61ea357ad340aeb5e2bea7fec13952");
-    final response = await http.get(url,headers: {
+        "https://api.geoapify.com/v2/places?categories=service.vehicle.charging_station&filter=circle:$userLatitude,$userLongitude,$radius&bias=proximity:$userLatitude,$userLongitude&limit=20&apiKey=");
+    final response = await http.get(url, headers: {
       "Accept": "application/json",
     });
     print(url);
@@ -559,11 +553,11 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
   // when user search i will show all nearby ev and other service
   Future<void> SearchFuelPlaces() async {
     final radius = 3000; // 1000 meters (1 km) radius
-    final latm=latLng!.longitude;
-    final lonm=latLng!.latitude;
+    final latm = latLng!.longitude;
+    final lonm = latLng!.latitude;
     final url = Uri.parse(
-        "https://api.geoapify.com/v2/places?categories=catering.restaurant,accommodation.hotel&filter=circle:$latm,$lonm,$radius&bias=proximity:$latm,$lonm&limit=40&apiKey=9b5e55cd91d84c7ca8e1ed9b2e3fc045");
-    final response = await http.get(url,headers: {
+        "https://api.geoapify.com/v2/places?categories=catering.restaurant,accommodation.hotel&filter=circle:$latm,$lonm,$radius&bias=proximity:$latm,$lonm&limit=40&apiKey=");
+    final response = await http.get(url, headers: {
       "Accept": "application/json",
     });
     print(url);
@@ -600,11 +594,11 @@ class _InitialMapIndiaState extends State<InitialMapIndia> {
   }
   Future<void> SearchEvPlaces() async {
     final radius = 3000; // 1000 meters (1 km) radius
-    final latm=latLng!.longitude;
-    final lonm=latLng!.latitude;
+    final latm = latLng!.longitude;
+    final lonm = latLng!.latitude;
     final url = Uri.parse(
-        "https://api.geoapify.com/v2/places?categories=service.vehicle.charging_station&filter=circle:$latm,$lonm,$radius&bias=proximity:$latm,$lonm&limit=40&apiKey=9b5e55cd91d84c7ca8e1ed9b2e3fc045");
-    final response = await http.get(url,headers: {
+        "https://api.geoapify.com/v2/places?categories=service.vehicle.charging_station&filter=circle:$latm,$lonm,$radius&bias=proximity:$latm,$lonm&limit=40&apiKey=");
+    final response = await http.get(url, headers: {
       "Accept": "application/json",
     });
     print(url);

@@ -14,28 +14,28 @@
       },
       "oauth_client": [
         {
-          "client_id": "1043899524261-dvg08gfis31jhdoriekod6g7n55lqbt5.apps.googleusercontent.com",
+          "client_id": "",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.lets_charge.lets_charge",
-            "certificate_hash": "52e1e2490d29a44fb8a8bf35086635636ca64b76"
+            "certificate_hash": ""
           }
         },
         {
-          "client_id": "1043899524261-a9jeuefrg2l6cv0cj1fedmieg33bmd35.apps.googleusercontent.com",
+          "client_id": "",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCItZfEaahtmYkToNvvOtOh0tE8_4mJ6s8"
+          "current_key": ""
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1043899524261-a9jeuefrg2l6cv0cj1fedmieg33bmd35.apps.googleusercontent.com",
+              "client_id": "",
               "client_type": 3
             }
           ]
